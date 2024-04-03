@@ -1,4 +1,4 @@
-package com.topas.air.repository;
+package com.topas.air.repository.sqlserver;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class User {
+public class Board {
     @Id
     private Long id;
 

@@ -11,30 +11,55 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 public class DBConfig {
 	
-	@Primary
-	@Bean(name = "datasource1")
-	@ConfigurationProperties("database1.datasource")
-	public DataSource dataSource() {
-		return DataSourceBuilder.create().build();
-	}
-
-	@Bean(name = "datasource2")
-	@ConfigurationProperties("database2.datasource")
-	public DataSource dataSource2() {
-		return DataSourceBuilder.create().build();
-	}
-
-	@Bean(name = "datasource3")
-	@ConfigurationProperties("database3.datasource")
-	public DataSource dataSource3() {
-		return DataSourceBuilder.create().build();
-	}
-
-	@Bean(name = "datasource4")
-	@ConfigurationProperties("datasource4.datasource")
-	public DataSource datasource4() {
-		return DataSourceBuilder.create().build();
-	}
+//	@Primary
+//	@Bean(name = "oracle")
+//	@ConfigurationProperties("oracle.datasource")
+//	public DataSource oracle() {
+//		return DataSourceBuilder.create().build();
+//	}
+//
+//	@Bean(name = "postgresql")
+//	@ConfigurationProperties("postgresql.datasource")
+//	public DataSource postgresql() {
+//		return DataSourceBuilder.create().build();
+//	}
+//
+//	@Bean(name = "sqlserver")
+//	@ConfigurationProperties("sqlserver.datasource")
+//	public DataSource sqlserver() {
+//		return DataSourceBuilder.create().build();
+//	}
+//
+//	@Bean(name = "mariadb")
+//	@ConfigurationProperties("mariadb.datasource")
+//	public DataSource mariadb() {
+//		return DataSourceBuilder.create().build();
+//	}
+//
+//	@Primary
+//	@Bean(name = "datasource1")
+//	@ConfigurationProperties("database1.datasource")
+//	public DataSource dataSource() {
+//		return DataSourceBuilder.create().build();
+//	}
+//
+//	@Bean(name = "datasource2")
+//	@ConfigurationProperties("database2.datasource")
+//	public DataSource dataSource2() {
+//		return DataSourceBuilder.create().build();
+//	}
+//
+//	@Bean(name = "datasource3")
+//	@ConfigurationProperties("database3.datasource")
+//	public DataSource dataSource3() {
+//		return DataSourceBuilder.create().build();
+//	}
+//
+//	@Bean(name = "datasource4")
+//	@ConfigurationProperties("datasource4.datasource")
+//	public DataSource datasource4() {
+//		return DataSourceBuilder.create().build();
+//	}
 
 //	@Bean(name = "datasource5")
 //	@ConfigurationProperties("datasource5.datasource")
