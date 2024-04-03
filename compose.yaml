@@ -1,0 +1,49 @@
+services:
+  mariadb:
+    image: 'mariadb:latest'
+    environment:
+      - 'MARIADB_DATABASE=mydatabase'
+      - 'MARIADB_PASSWORD=secret'
+      - 'MARIADB_ROOT_PASSWORD=verysecret'
+      - 'MARIADB_USER=myuser'
+    ports:
+      - '3306:3306'
+#  mysql:
+#    image: 'mysql:latest'
+##    image: mysql:5.7
+#    environment:
+#      - 'MYSQL_ROOT_PASSWORD=verysecret'
+#      - 'MYSQL_USER=myuser'
+#      - 'MYSQL_PASSWORD=secret'
+#      - 'MYSQL_ROOT_HOST=%'
+#      - 'MYSQL_DATABASE=mydatabase'
+#    ports:
+#      - '3307:3307'
+#    volumes:
+#      - 'C:/mysql/data:/var/lib/mysql'
+  oracle:
+    image: 'gvenzl/oracle-xe:latest'
+    environment:
+#      - 'ORACLE_RANDOM_PASSWORD=true'
+      - 'APP_USER=user1234'
+      - 'APP_USER_PASSWORD=user1234'
+      - 'ORACLE_DATABASE=user1234'
+      - 'ORACLE_PASSWORD=secret'
+    ports:
+      - '1521:1521'
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=mydatabase'
+      - 'POSTGRES_PASSWORD=secret'
+      - 'POSTGRES_USER=myuser'
+    ports:
+      - '5432:5432'
+  sqlserver:
+    image: 'mcr.microsoft.com/mssql/server:latest'
+    environment:
+      - 'ACCEPT_EULA=yes'
+      - 'MSSQL_PID=express'
+      - 'MSSQL_SA_PASSWORD=verYs3cret'
+    ports:
+      - '1433:1433'
