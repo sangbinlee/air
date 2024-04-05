@@ -38,11 +38,12 @@ public class DBOracleConfig {
 	@Bean
 	public LocalContainerEntityManagerFactoryBean oracleEntityManagerFactory(EntityManagerFactoryBuilder builder,
 			@Qualifier("oracle") DataSource dataSource) {
-		
+
 		Map<String, String> properties = new HashMap<String, String>();
 		properties.put("hibernate.dialect", "org.hibernate.dialect.OracleDialect");
-		properties.put("hibernate.hbm2ddl.auto", "create");
-		
+//		properties.put("hibernate.hbm2ddl.auto", "create");
+		properties.put("hibernate.hbm2ddl.auto", "update");
+
 		return builder.dataSource(dataSource).packages("com.topas.air.repository.oracle")
 				.persistenceUnit("oracleEntityManager").properties(properties).build();
 	}

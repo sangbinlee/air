@@ -3,9 +3,9 @@ services:
     image: 'mariadb:latest'
     environment:
       - 'MARIADB_DATABASE=mydatabase'
+      - 'MARIADB_USER=myuser'
       - 'MARIADB_PASSWORD=secret'
       - 'MARIADB_ROOT_PASSWORD=verysecret'
-      - 'MARIADB_USER=myuser'
     ports:
       - '3306:3306'
   mysql:
@@ -21,7 +21,7 @@ services:
       - 13306:3306
 #    volumes:
 #      - 'C:/mysql/data:/var/lib/mysql'
-  oracle:
+  oracle: # system/secret  sid:xe , servicename = user1234
     image: 'gvenzl/oracle-xe:latest'
     environment:
 #      - 'ORACLE_RANDOM_PASSWORD=true'
