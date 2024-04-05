@@ -54,17 +54,17 @@ public class SwaggerConfig {
 	 * swagger 화면에 authorize 버튼 보이게 할때 사용 :  Available authorizations
 	 * @return
 	 */
-//	@Bean
-//	public OpenAPI openAPI() {
-//		SecurityScheme securityScheme = new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer")
-//				.bearerFormat("JWT").in(SecurityScheme.In.HEADER).name("Authorization");
-//		SecurityRequirement securityRequirement = new SecurityRequirement().addList("bearerAuth");
-//
-//		return new OpenAPI()
-//				.components(new Components().addSecuritySchemes("bearerAuth", securityScheme))
-//				.security(Arrays.asList(securityRequirement))
-//				;
-//	}
+	@Bean
+	public OpenAPI openAPI() {
+		SecurityScheme securityScheme = new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer")
+				.bearerFormat("JWT").in(SecurityScheme.In.HEADER).name("Authorization");
+		SecurityRequirement securityRequirement = new SecurityRequirement().addList("bearerAuth");
+
+		return new OpenAPI()
+				.components(new Components().addSecuritySchemes("bearerAuth", securityScheme))
+				.security(Arrays.asList(securityRequirement))
+				;
+	}
 
 
 	/**

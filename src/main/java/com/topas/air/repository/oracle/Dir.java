@@ -2,10 +2,13 @@ package com.topas.air.repository.oracle;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Entity
@@ -14,6 +17,9 @@ public class Dir {
 	@Id
 	private Long id;
 
+    @NotNull(message = "Name cannot be null")
+    @Size(min = 2, message = "Name not be less than two characters")
+    @Schema(description = "사용자 이름", nullable = false, example = "김재한")
 	private String name;
 
 //    @OneToOne(mappedBy="id", cascade= CascadeType.ALL)

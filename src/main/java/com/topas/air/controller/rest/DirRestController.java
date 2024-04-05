@@ -2,8 +2,6 @@ package com.topas.air.controller.rest;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +14,11 @@ import com.topas.air.repository.oracle.DirRepository;
 import com.topas.air.repository.oracle.Files;
 import com.topas.air.repository.oracle.FilesRepository;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+
+@Tag(name = "QR 컨트롤러", description = "QR코드 API입니다.")
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("v1/dir")
 public class DirRestController {
@@ -23,10 +26,10 @@ public class DirRestController {
     private final DirRepository dirRepository;
     private final FilesRepository filesRepository;
 
-    public DirRestController(DirRepository dirRepository, FilesRepository filesRepository) {
-        this.dirRepository = dirRepository;
-        this.filesRepository = filesRepository;
-    }
+//    public DirRestController(DirRepository dirRepository, FilesRepository filesRepository) {
+//        this.dirRepository = dirRepository;
+//        this.filesRepository = filesRepository;
+//    }
 
 //    @GetMapping
 //    public List<MenuResult> getV2Menus() {
