@@ -15,7 +15,7 @@ public class AirportRoutes {
 
 	public static void main(String[] args) throws ResponseException {
 
-		Amadeus amadeus = Amadeus.builder("SHrMbcnhhjK6ekJgDLPT9FwbeKa2PSqK", "9KpkICtEnUgcGAUp").build();
+		Amadeus amadeus = Amadeus.builder("", "").build();
 
 		Destination[] directDestinations = amadeus.airport.directDestinations
 				.get(Params.with("departureAirportCode", "MAD"));

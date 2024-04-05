@@ -1,7 +1,9 @@
 package com.topas.air.controller.rest;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.topas.air.repository.oracle.Dir;
 import com.topas.air.repository.oracle.DirRepository;
-import com.topas.air.repository.oracle.Files;
 import com.topas.air.repository.oracle.FilesRepository;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -38,15 +39,38 @@ public class DirRestController {
 //    }
 
     @GetMapping
-    public List<Dir> getUsers() {
-    	Optional<Dir> dirList = dirRepository.findById((long) 1);
-    	List<Dir> fileList2 =dirList.stream().collect(Collectors.toList());
-    	List<Files> fileList = filesRepository.findAll();
-    	for (Dir dir : fileList2) {
-    		List<Files> list = fileList.stream().filter(x-> x.getId() == dir.getId()).collect(Collectors.toList());
-    		dir.setChildren(list);
+    public Map<String, Object> getUsers() {
+//    	Optional<Dir> dirList = dirRepository.findById((long) 1);
+    	List<Dir> dirList = dirRepository.findAll();
+//    	List<Dir> fileList2 =dirList.stream().collect(Collectors.toList());
+//    	List<Files> fileList = filesRepository.findAll();
+//		Set<Dir> result = list.stream().collect(Collectors.toSet());
+//		dir.setChildren(result);
+		Long menu1 = (long) 1;
+		Long menu2 = (long) 2;
+		Long menu3 = (long) 3;
+		for (Dir dir : dirList) {
+
 		}
-        return fileList2;
+		List<Dir> menu1Root = dirList.stream().filter(x-> x.getId() == menu1).collect(Collectors.toList());
+		List<Dir> menu2listWithOutRoot = dirList.stream().filter(x-> x.getParent() != null).collect(Collectors.toList());
+		List<Dir> menu1list = menu2listWithOutRoot.stream().filter(x-> x.getParent().getId() == menu1).collect(Collectors.toList());
+		for (Dir dir : menu1list) {
+			Long parentId = dir.getId();
+			List<Dir> menu2list = menu2listWithOutRoot.stream().filter(x-> x.getParent().getId() == parentId).collect(Collectors.toList());
+			Set<Dir> result = menu2list.stream().collect(Collectors.toSet());
+			dir.setChildren(result);
+		}
+		List<Dir> menu3list = menu2listWithOutRoot.stream().filter(x-> x.getParent().getId() == menu3).collect(Collectors.toList());
+
+//		{
+//			  name: 'My Tree',
+//			  children: []
+//		}
+		Map<String, Object> treeMap = new HashMap<String, Object>();
+		treeMap.put("name", menu1Root.get(0).getName());
+		treeMap.put("children", menu1list);
+        return treeMap;
     }
 
     @GetMapping("/{id}")
