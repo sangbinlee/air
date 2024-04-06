@@ -22,7 +22,7 @@ import jakarta.persistence.EntityManagerFactory;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "mariaEntityManagerFactory",
         transactionManagerRef = "mariaTransactionManager",
-        basePackages = { "com.topas.air.repository.mariadb" }
+        basePackages = { "com.topas.air.repository.maria" }
 )
 public class DBMariaConfig {
 
@@ -41,7 +41,7 @@ public class DBMariaConfig {
 		properties.put("hibernate.hbm2ddl.auto", "create");
 		
 		
-		return builder.dataSource(dataSource).packages("com.topas.air.repository.mariadb")
+		return builder.dataSource(dataSource).packages("com.topas.air.repository.maria")
 				.persistenceUnit("mariadbEntityManager").properties(properties).build();
 	}
 
