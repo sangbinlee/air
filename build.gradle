@@ -37,6 +37,12 @@ dependencies {
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.0'
 
 
+	// log4jdbc
+	implementation group: 'org.bgee.log4jdbc-log4j2', name:'log4jdbc-log4j2-jdbc4.1', version: '1.16'
+
+
+
+
 	// [amadeus]
 	// compile "com.amadeus:amadeus-java:7.0.0"
 	// compile "com.amadeus:amadeus-java:8.1.0"

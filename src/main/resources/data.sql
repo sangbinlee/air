@@ -11,3 +11,12 @@ INSERT INTO DIR (id, PARENT_ID, NAME) VALUES(7, 5, '햄버거');
 INSERT INTO DIR (id, PARENT_ID, NAME) VALUES(8, 1, '일식');
 INSERT INTO DIR (id, PARENT_ID, NAME) VALUES(9, 8, '라멘');
 INSERT INTO DIR (id, PARENT_ID, NAME) VALUES(10, 8, '돈까스');
+
+
+select SYS_CONNECT_BY_PATH( PARENT_ID, ' -> ' ) || ' -> ' || id || NAME AS path
+from DIR 
+connect by prior id = PARENT_ID
+--START WITH PARENT_ID IS null
+START WITH PARENT_ID = 1
+
+ 
