@@ -56,10 +56,11 @@ public class BoardRestController {
     	return boardService.select();
     }
     /**
-     *
+     * 이 방식은 like 검색 안됨, equal 검색 됨.
      * localhost:8080/v1/board/paging?page=3&size=3&sort=id,desc
      * localhost:8080/v1/board/paging?page=3&size=3&sort=id,desc&sort=name,asc
      * localhost:8080/v1/board/paging?page=0&size=5&sort=id,desc
+     * localhost:8080/v1/board/paging?page=0&size=5&sort=id,desc&keyword=name 19
      * @param page
      * @param size
      * @param sort
@@ -78,15 +79,16 @@ public class BoardRestController {
     	log.info("page={}", page);
     	log.info("size={}", size);
     	log.info("sort={}", sort);
+    	log.info("keyword={}", keyword);
     	log.info("pageable={}", pageable);// Page request [number: 3, size 3, sort: name: DESC]
 
 
 
 
-    	  for (long i = 0; i < 99; i++) {
-    		  Board board = new Board( i,  "name" + i  );
-    		  boardRepository.save(board);
-    	  }
+//    	  for (long i = 0; i < 99; i++) {
+//    		  Board board = new Board( i,  "name " + i  );
+//    		  boardRepository.save(board);
+//    	  }
 
     	  Board prototype = new Board();
     	  prototype.setName(keyword);
