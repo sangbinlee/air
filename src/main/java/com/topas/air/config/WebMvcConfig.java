@@ -26,9 +26,11 @@ public class WebMvcConfig  implements WebMvcConfigurer {
                 .excludePathPatterns(URI + "/swagger-resources/**", URI + "/swagger-ui/**", URI + "/v3/api-docs", URI + "/api-docs/**")
                 .excludePathPatterns("/swagger-resources/**", "/swagger-ui/**", "/v3/api-docs", "/api-docs/**")
                 .excludePathPatterns("/signUp", "/signIn", "/error/**", "/reissue")
+                .excludePathPatterns("/**/paging")
                 .addPathPatterns("/**");
 
-        registry.addInterceptor(pageInterceptor());
+        registry.addInterceptor(pageInterceptor())
+        .addPathPatterns("/**/paging");
 
     }
 

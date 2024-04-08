@@ -19,7 +19,7 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
 	    request.setAttribute("startTime", startTime);
 
 	    log.info("[START]  [" + request.getMethod() + "] [ URL is: " + request.getRequestURL().toString()
-	            + " Body is: {}]");
+	            + " Body is: {}]", 999);
 
 
 

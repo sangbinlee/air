@@ -17,14 +17,19 @@ public class PageInterceptor implements HandlerInterceptor {
 		log.info("######## preHandle[PageInterceptor]");
 
 		String page = request.getParameter("page");
+		String size = request.getParameter("size");
 		if (page == null) {
 			page = "1";
 		}
+		if (size == null) {
+			size = "10";// pageSize
+		}
 
-		int pageSize = 10;
-		PageHelper.startPage(Integer.parseInt(page), pageSize);
+		PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(size));
+		log.info("######## preHandle[PageInterceptor] page={}, size={}", page, size);
 
-		return true;
+//		return true;
+		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}
 
 	@Override
