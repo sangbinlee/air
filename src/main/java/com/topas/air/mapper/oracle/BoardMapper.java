@@ -4,13 +4,15 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.github.pagehelper.Page;
 import com.topas.air.repository.oracle.Board;
-
 
 @Mapper
 public interface BoardMapper {
 
 	List<Board> select();
+
+	Page<Board> paging();
 
 	Board selectOne(int myno);
 

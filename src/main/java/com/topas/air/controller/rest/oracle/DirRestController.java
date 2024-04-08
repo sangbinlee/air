@@ -1,4 +1,4 @@
-package com.topas.air.controller.rest;
+package com.topas.air.controller.rest.oracle;
 
 import java.util.HashMap;
 import java.util.List;

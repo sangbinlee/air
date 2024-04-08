@@ -7,15 +7,18 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.topas.air.interceptor.JwtTokenInterceptor;
+import com.topas.air.interceptor.PageInterceptor;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Configuration
 public class WebMvcConfig  implements WebMvcConfigurer {
 
     @Value("${spring.url}")
     private static String URI;
+
+//    private final PageInterceptor pageInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -24,10 +27,17 @@ public class WebMvcConfig  implements WebMvcConfigurer {
                 .excludePathPatterns("/swagger-resources/**", "/swagger-ui/**", "/v3/api-docs", "/api-docs/**")
                 .excludePathPatterns("/signUp", "/signIn", "/error/**", "/reissue")
                 .addPathPatterns("/**");
+
+        registry.addInterceptor(pageInterceptor());
+
     }
 
     @Bean
     public JwtTokenInterceptor jwtTokenInterceptor(){
         return new JwtTokenInterceptor();
+    }
+    @Bean
+    public PageInterceptor pageInterceptor(){
+        return new PageInterceptor();
     }
 }

@@ -3,6 +3,7 @@ package com.topas.air.config;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Properties;
 
 import javax.sql.DataSource;
 
@@ -23,6 +24,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
+
+import com.github.pagehelper.PageInterceptor;
 
 import jakarta.persistence.EntityManagerFactory;
 
@@ -54,7 +57,7 @@ public class DBOracleConfig {
 		properties.put("hibernate.dialect", "org.hibernate.dialect.OracleDialect");
 //		properties.put("hibernate.hbm2ddl.auto", "create");
 		properties.put("hibernate.hbm2ddl.auto", "update");
-		
+
         properties.put("hibernate.format_sql", true);
         properties.put("hibernate.show_sql", true);  // sql은 log4j로 출력 org.hibernate.SQL=DEBUG
 
@@ -68,8 +71,8 @@ public class DBOracleConfig {
 			@Qualifier("oracleEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
 		return new JpaTransactionManager(entityManagerFactory);
 	}
-	
-	
+
+
 
     @Bean(name= "sqlSessionFactory")
     public SqlSessionFactory sqlSessionFactory(@Qualifier("oracle") DataSource dataSource) throws Exception {
@@ -81,15 +84,26 @@ public class DBOracleConfig {
         sessionFactoryBean.setTypeAliasesPackage("com.topas.air.repository.oracle, com.topas.air.dto.oracle");
         sessionFactoryBean.setTypeHandlersPackage("com.topas.air.typehandler.oracle");
         Objects.requireNonNull(sessionFactoryBean.getObject()).getConfiguration().setMapUnderscoreToCamelCase(true); //camelCase
+
+
+        PageInterceptor pi = new PageInterceptor();
+        Properties properties = new Properties();
+        properties.put("helperDialect", "oracle");
+        properties.put("reasonable", "true");
+        pi.setProperties(properties);
+        sessionFactoryBean.setPlugins(pi);
+
+
+
         return sessionFactoryBean.getObject();
     }
-    
+
     @Bean(name= "sqlSessionTemplate")
     public SqlSessionTemplate sqlSessionTemplate(@Qualifier("sqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
-	
-	
+
+
 
 //    @Bean(name= "txManager")
 //    public PlatformTransactionManager txManager(@Qualifier("oracle") DataSource dataSource) {
@@ -101,5 +115,5 @@ public class DBOracleConfig {
 //    JpaTransactionManager transactionManager() {
 //        return new JpaTransactionManager();
 //    }
-	
+
 }

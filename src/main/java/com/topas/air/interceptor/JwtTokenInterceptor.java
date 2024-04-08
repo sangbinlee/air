@@ -13,6 +13,17 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		log.info("######## preHandle");
+
+	    long startTime = System.currentTimeMillis();
+
+	    request.setAttribute("startTime", startTime);
+
+	    log.info("[START]  [" + request.getMethod() + "] [ URL is: " + request.getRequestURL().toString()
+	            + " Body is: {}]");
+
+
+
+
 		return true;
 	}
 
@@ -20,5 +31,12 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
 		log.info("######## afterCompletion");
+
+
+	    long startTime = (long) request.getAttribute("startTime");
+	    request.removeAttribute("startTime");
+	    long endTime = System.currentTimeMillis();
+	    log.info("[END]  [" + request.getMethod() + "]   [ URL is:" + request.getRequestURL().toString()
+	            + "]  [Execution Time: {} miliseconds]", (endTime - startTime));
 	}
 }

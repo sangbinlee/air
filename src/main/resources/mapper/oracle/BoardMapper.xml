@@ -3,9 +3,13 @@
 <mapper namespace="com.topas.air.mapper.oracle.BoardMapper">
 
     <select id="select">
-        SELECT * FROM Board  
+        /*select*/SELECT * FROM Board
     </select>
-    
+
+    <select id="paging">
+        /*paging*/SELECT * FROM Board
+    </select>
+
     <select id="selectOne">
         SELECT * FROM Board WHERE id = #{id}
     </select>
