@@ -5,12 +5,14 @@ import java.util.Arrays;
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import lombok.RequiredArgsConstructor;
 
 @OpenAPIDefinition(info = @Info(title = "Couple App", description = "couple app api명세", version = "v1"))
@@ -71,11 +73,15 @@ public class SwaggerConfig {
 	 * mapping vi 인 경우만 나오게 할때
 	 * @return
 	 */
+	@Profile({"test || dev"})
+//    @Profile({"!test && !dev"})
 	@Bean
 	public GroupedOpenApi chatOpenApi() {
 		String[] paths = { "/v1/**" };
 
 		return GroupedOpenApi.builder().group("COUPLE API v1").pathsToMatch(paths).build();
 	}
+
+
 
 }
