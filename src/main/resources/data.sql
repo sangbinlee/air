@@ -8,6 +8,10 @@
 --create user user1234 identified by user1234 quota unlimited on users;
 --grant connect, resource to user1234;
 
+-- alter user user1234 default tablespace users quota unlimited on users;
+
+
+
 INSERT INTO DIR (id, PARENT_ID, NAME) VALUES(1, null, '음식');
 INSERT INTO DIR (id, PARENT_ID, NAME) VALUES(2, 1, '한식');
 INSERT INTO DIR (id, PARENT_ID, NAME) VALUES(3, 2, '콩나물국밥');
