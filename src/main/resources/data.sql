@@ -7,9 +7,6 @@
 --
 --create user user1234 identified by user1234 quota unlimited on users;
 --grant connect, resource to user1234;
---
---create user user1234 identified by user1234 quota unlimited on users;
---grant connect, resource to user1234;
 
 INSERT INTO DIR (id, PARENT_ID, NAME) VALUES(1, null, '음식');
 INSERT INTO DIR (id, PARENT_ID, NAME) VALUES(2, 1, '한식');

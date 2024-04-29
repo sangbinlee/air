@@ -2,7 +2,9 @@
 DROP TABLE  t_USERS;
 
 
- 
+-- drop table if exists t_USERS;
+
+
 create table t_USERS(
   ID int not null ,
   NAME varchar(100) not null,
@@ -10,4 +12,3 @@ create table t_USERS(
   PRIMARY KEY ( ID )
 );
 
- 
